@@ -13,30 +13,61 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _paswwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  void _login() async{
-    try{
+  void _login() async {
+    try {
       final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: _emailController.text,
-          password: _paswwordController.text);
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesful")),);
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => BottomNavi()),
+        email: _emailController.text,
+        password: _passwordController.text,
       );
-
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Login successful")),
+      );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BottomNavi()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Failed to login: ${e.toString()}")),
+      );
     }
-    catch (e)
-    {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to login: ${e.toString()}")));
+  }
 
+  Future<void> _resetPassword() async {
+    if (_emailController.text.isNotEmpty) { // Fixed condition
+      try {
+        await FirebaseAuth.instance.sendPasswordResetEmail(
+          email: _emailController.text,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Password reset email sent"),
+            backgroundColor: Colors.green,
+          ),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Error: ${e.toString()}"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Please enter your email"),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Allows resizing when keyboard appears
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -53,7 +84,7 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
               ),
               // Bottom part with green background
               Container(
-                height: MediaQuery.of(context).size.height * 0.6, // Adjust height to fill the rest of the screen
+                height: MediaQuery.of(context).size.height * 0.6,
                 decoration: BoxDecoration(
                   color: Colors.green,
                   borderRadius: BorderRadius.only(
@@ -67,14 +98,18 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(
-                      child: Container(
-                        child: Text("LOGIN",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
+                      child: Text(
+                        "LOGIN",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                     // Email TextField
                     TextField(
                       controller: _emailController,
-
                       decoration: InputDecoration(
                         labelText: "Email",
                         labelStyle: TextStyle(color: Colors.white),
@@ -88,7 +123,7 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
                     SizedBox(height: 20),
                     // Password TextField
                     TextField(
-                      controller: _paswwordController,
+                      controller: _passwordController,
                       decoration: InputDecoration(
                         labelText: "Password",
                         labelStyle: TextStyle(color: Colors.white),
@@ -108,9 +143,7 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {
-                          // Handle forget password
-                        },
+                        onPressed: _resetPassword,
                         child: Text(
                           "Forget Password?",
                           style: TextStyle(color: Colors.white),
@@ -123,8 +156,6 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: _login,
-                          // Handle login
-
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           padding: EdgeInsets.symmetric(vertical: 15),
@@ -149,8 +180,7 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
                             onPressed: () {
                               // Navigate to sign up page
                               Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) => Signup()),
+                                MaterialPageRoute(builder: (context) => Signup()),
                               );
                             },
                             child: Text(
@@ -163,7 +193,7 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login succesf
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
