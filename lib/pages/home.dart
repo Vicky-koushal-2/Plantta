@@ -178,6 +178,7 @@ class _HomeState extends State<Home> {
               child: Image.network(imagePath, fit: BoxFit.cover),
             ),
           ),
+          
           Padding(
             padding: EdgeInsets.all(8),
             child: Column(
