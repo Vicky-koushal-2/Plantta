@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:plantta/pages/detail_page.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -159,44 +160,55 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildPlantCard(String plantName, String imagePath, String price) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            blurRadius: 5,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: ClipRect(
-              child: Image.network(imagePath, fit: BoxFit.cover),
+    return 
+      
+      GestureDetector(
+        onTap: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DetailPage(
+            plantName: plantName,
+            imagePath: imagePath,
+            price: price,
+          )));
+        },
+        child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              blurRadius: 5,
+              spreadRadius: 2,
             ),
-          ),
-          
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              children: [
-                Text(
-                  plantName,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  price,
-                  style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-                ),
-              ],
+          ],
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ClipRect(
+                child: Image.network(imagePath, fit: BoxFit.cover),
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+            
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Text(
+                    plantName,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    price,
+                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+            ),
+      );
   }
 }
