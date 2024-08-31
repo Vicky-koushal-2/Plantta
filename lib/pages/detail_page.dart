@@ -1,11 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:plantta/pages/payment_page.dart';
 
 
 class DetailPage extends StatelessWidget {
   final String plantName;
   final String imagePath;
   final String price;
+
+
+
+    // Calculate total price of items in the cart
+
+
+
 
   const DetailPage({Key? key, required this.plantName, required this.imagePath, required this.price}) : super(key: key);
 

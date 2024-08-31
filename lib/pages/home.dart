@@ -10,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   String searchQuery = '';
   String selectedCategory = '';
 
@@ -160,8 +161,8 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildPlantCard(String plantName, String imagePath, String price) {
-    return 
-      
+    return
+
       GestureDetector(
         onTap: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DetailPage(
@@ -189,7 +190,7 @@ class _HomeState extends State<Home> {
                 child: Image.network(imagePath, fit: BoxFit.cover),
               ),
             ),
-            
+
             Padding(
               padding: EdgeInsets.all(8),
               child: Column(
