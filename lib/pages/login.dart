@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
         SnackBar(content: Text("Login successful")),
       );
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => BottomNavi()),
+        MaterialPageRoute(builder: (context) => BottomNavi(email: _emailController.text,)),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

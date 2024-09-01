@@ -28,7 +28,7 @@ class _SignupState extends State<Signup> {
         );
         // Navigate to another page or dashboard after successful signup
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => BottomNavi()), // Example: Navigate to Login
+          MaterialPageRoute(builder: (context) => BottomNavi(email: _email.toString(),)), // Example: Navigate to Login
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
