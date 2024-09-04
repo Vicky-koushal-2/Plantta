@@ -118,6 +118,7 @@ class _HomeState extends State<Home> {
                     return _buildPlantCard(
                       plant['name'],
                       plant['imageUrl'],
+                      plant['discription'],
                       plant['price'],
                     );
                   },
@@ -160,7 +161,7 @@ class _HomeState extends State<Home> {
       );
   }
 
-  Widget _buildPlantCard(String plantName, String imagePath, String price) {
+  Widget _buildPlantCard(String plantName, String imagePath, String price, String description) {
     return
 
       GestureDetector(
@@ -168,7 +169,9 @@ class _HomeState extends State<Home> {
           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DetailPage(
             plantName: plantName,
             imagePath: imagePath,
+            description: description,
             price: price,
+
           )));
         },
         child: Container(

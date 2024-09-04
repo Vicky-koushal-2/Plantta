@@ -15,7 +15,7 @@ class DetailPage extends StatelessWidget {
 
 
 
-  const DetailPage({Key? key, required this.plantName, required this.imagePath, required this.price}) : super(key: key);
+  const DetailPage({Key? key, required this.plantName, required this.imagePath, required this.price, required String description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
