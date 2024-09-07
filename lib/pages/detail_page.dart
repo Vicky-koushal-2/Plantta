@@ -6,6 +6,7 @@ import 'package:plantta/pages/payment_page.dart';
 class DetailPage extends StatelessWidget {
   final String plantName;
   final String imagePath;
+  final String description;
   final String price;
 
 
@@ -15,7 +16,7 @@ class DetailPage extends StatelessWidget {
 
 
 
-  const DetailPage({Key? key, required this.plantName, required this.imagePath, required this.price, required String description}) : super(key: key);
+  const DetailPage({Key? key, required this.plantName, required this.imagePath, required this.price,required this.description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,14 @@ class DetailPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold
             ),),
+            SizedBox(height: 10,),
+            Text(description,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold
+
+              ),),
             SizedBox(height: 10,),
             //plant price
             Text(price,

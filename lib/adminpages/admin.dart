@@ -61,6 +61,7 @@ class _AdminPageState extends State<AdminPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Plant added successfully')));
       _nameController.clear();
       _priceController.clear();
+      _description.clear();
       setState(() {
         _image = null;
         _selectedCategory = _categories.first; // Reset to default

@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
                     return _buildPlantCard(
                       plant['name'],
                       plant['imageUrl'],
-                      plant['discription'],
+                      plant['description'],
                       plant['price'],
                     );
                   },
@@ -171,6 +171,7 @@ class _HomeState extends State<Home> {
             imagePath: imagePath,
             description: description,
             price: price,
+
 
           )));
         },
