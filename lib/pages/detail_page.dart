@@ -16,7 +16,7 @@ class DetailPage extends StatelessWidget {
 
 
 
-  const DetailPage({Key? key, required this.plantName, required this.imagePath, required this.price,required this.description}) : super(key: key);
+  const DetailPage({Key? key, required this.plantName, required this.imagePath,required this.description, required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,14 @@ class DetailPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold
             ),),
+            SizedBox(height: 5,),
+            Text(price,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.lightGreenAccent,
+                  fontWeight: FontWeight.bold
+
+              ),),
             SizedBox(height: 10,),
             Text(description,
               style: TextStyle(
@@ -50,15 +58,9 @@ class DetailPage extends StatelessWidget {
                   fontWeight: FontWeight.bold
 
               ),),
-            SizedBox(height: 10,),
-            //plant price
-            Text(price,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.green,
-              fontWeight: FontWeight.bold
 
-            ),),
+            //plant price
+
 
             SizedBox(height: 20,),
             Row(

@@ -162,8 +162,8 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildPlantCard(String plantName, String imagePath, String price, String description) {
-    return
 
+    return
       GestureDetector(
         onTap: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DetailPage(
@@ -171,8 +171,6 @@ class _HomeState extends State<Home> {
             imagePath: imagePath,
             description: description,
             price: price,
-
-
           )));
         },
         child: Container(
@@ -206,8 +204,13 @@ class _HomeState extends State<Home> {
                   SizedBox(height: 5),
                   Text(
                     price,
-                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                    maxLines: 2,
+                    style: TextStyle(color:Colors.lightGreenAccent),
                   ),
+                  SizedBox(height: 5,),
+                     Text(description,
+                       style: TextStyle(color:  Colors.green, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
             ),
