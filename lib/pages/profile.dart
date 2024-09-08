@@ -62,7 +62,10 @@ class Profile extends StatelessWidget {
                 SizedBox(height: 10,),
                 Text(email),
             SizedBox(height: 20,),
-                ElevatedButton(onPressed: (){},
+                ElevatedButton(onPressed: (){
+
+
+                },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.yellow
                     ),
