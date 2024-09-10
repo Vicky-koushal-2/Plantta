@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:plantta/pages/change_location.dart';
-import 'package:plantta/pages/edit_profile.dart';
+import 'package:plantta/profile/change_location.dart';
+import 'package:plantta/profile/edit_profile.dart';
 import 'package:plantta/pages/login.dart';
 import 'package:plantta/pages/password_update.dart';
 
@@ -99,9 +99,23 @@ class Profile extends StatelessWidget {
 
                   ),
                 ),
-                GestureDetector(
 
-                  child: ListTile
+                   ListTile(
+                     leading: Container(
+                       height: 40,
+                       width: 40,
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(100),
+                         color: Colors.tealAccent.withOpacity(0.1)
+                       ),
+                       child: Icon(Icons.card_travel),
+                     ),
+                     title: Text('My Orders'),
+                     trailing: Container(
+                       child: Icon(Icons.card_travel,color: Colors.grey,),
+                     ),
+                   ),
+                   ListTile
                     (
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>PasswordUpdate()));
@@ -120,12 +134,12 @@ class Profile extends StatelessWidget {
                     trailing: Container(
                       child: Icon(Icons.lock,color: Colors.grey,),
 
-                    ),
+
 
                   ),
                 ),
                 GestureDetector(
-
+                  
                   child: ListTile
                     (
                     leading: Container(
@@ -146,6 +160,46 @@ class Profile extends StatelessWidget {
 
                   ),
                 ),
+
+                
+                GestureDetector(
+                  child: ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.tealAccent.withOpacity(0.1),
+                      ),
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons.privacy_tip),
+                    ),
+                    title: Text('Privacy Policy'),
+                    trailing: Container(
+                      child: Icon(Icons.privacy_tip,color: Colors.grey,),
+                    ),
+                  ),
+                  
+                ),
+                
+                   
+               
+                   ListTile(
+                    leading: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.tealAccent.withOpacity(0.1)
+                      ),
+                      child: Icon(Icons.import_contacts_sharp),
+                    ),
+                    title: Text('Term & Condition'),
+                     trailing: Container(
+                       child: Icon(Icons.import_contacts_sharp,
+                       color: Colors.grey,),
+                     ),
+                  ),
+
                 GestureDetector(
                   onTap: (){
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Logout")));
@@ -169,10 +223,11 @@ class Profile extends StatelessWidget {
 
 
                   ),
-                )
+                ),
 
 
-            ],
+
+              ],
             
                 ),
           ),

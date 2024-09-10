@@ -6,7 +6,7 @@ import 'package:plantta/pages/home.dart';
 import 'package:plantta/pages/loginsign.dart';
 import 'package:plantta/pages/onbord.dart';
 import 'package:plantta/pages/onbording.dart';
-import 'package:plantta/pages/profile.dart';
+import 'package:plantta/profile/profile.dart';
 
 import 'firebase_options.dart';
 

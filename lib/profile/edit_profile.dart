@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:plantta/pages/profile.dart';
+import 'package:plantta/profile/profile.dart';
 
 
 class EditProfile extends StatelessWidget {
@@ -72,9 +72,14 @@ class EditProfile extends StatelessWidget {
                     )
                   ),
                 ),
+
                 SizedBox(height: 30,),
                 
-                ElevatedButton(onPressed: (){}, child: Text('Update',style: TextStyle(
+                ElevatedButton(onPressed: (){
+
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Updated')));
+
+                }, child: Text('Update',style: TextStyle(
                   color: Colors.white,fontWeight: FontWeight.bold
                 ),),
                 
