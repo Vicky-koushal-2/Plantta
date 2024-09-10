@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:plantta/pages/change_location.dart';
+import 'package:plantta/pages/edit_profile.dart';
 import 'package:plantta/pages/login.dart';
 import 'package:plantta/pages/password_update.dart';
 
@@ -63,7 +64,7 @@ class Profile extends StatelessWidget {
                 Text(email),
             SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){
-
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfile()));
 
                 },
                     style: ElevatedButton.styleFrom(
