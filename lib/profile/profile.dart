@@ -4,6 +4,9 @@ import 'package:plantta/profile/change_location.dart';
 import 'package:plantta/profile/edit_profile.dart';
 import 'package:plantta/pages/login.dart';
 import 'package:plantta/pages/password_update.dart';
+import 'package:plantta/profile/my_order.dart';
+import 'package:plantta/profile/privacy_policy.dart';
+import 'package:plantta/profile/term_and_condition.dart';
 
 class Profile extends StatelessWidget {
   final String email;
@@ -100,19 +103,25 @@ class Profile extends StatelessWidget {
                   ),
                 ),
 
-                   ListTile(
-                     leading: Container(
-                       height: 40,
-                       width: 40,
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(100),
-                         color: Colors.tealAccent.withOpacity(0.1)
+                   GestureDetector(
+                     onTap: (){
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>MyOrder()));
+                     },
+                     child: ListTile(
+
+                       leading: Container(
+                         height: 40,
+                         width: 40,
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(100),
+                           color: Colors.tealAccent.withOpacity(0.1)
+                         ),
+                         child: Icon(Icons.card_travel),
                        ),
-                       child: Icon(Icons.card_travel),
-                     ),
-                     title: Text('My Orders'),
-                     trailing: Container(
-                       child: Icon(Icons.card_travel,color: Colors.grey,),
+                       title: Text('My Orders'),
+                       trailing: Container(
+                         child: Icon(Icons.card_travel,color: Colors.grey,),
+                       ),
                      ),
                    ),
                    ListTile
@@ -163,7 +172,11 @@ class Profile extends StatelessWidget {
 
                 
                 GestureDetector(
-                  child: ListTile(
+                  child: ListTile
+                    (
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>PrivacyPolicy()));
+                    },
                     leading: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
@@ -184,6 +197,9 @@ class Profile extends StatelessWidget {
                    
                
                    ListTile(
+                     onTap: (){
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>TermAndCondition()));
+                     },
                     leading: Container(
                       height: 40,
                       width: 40,

@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                     prefixIcon: Icon(Icons.search, color: Colors.black45),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     filled: true,
                     fillColor: Colors.grey[200],
