@@ -104,6 +104,7 @@ class _AdminPageState extends State<AdminPage> {
                   )),
                   validator: (value) => value!.isEmpty ? 'Please enter plant name' : null,
                 ),
+                SizedBox(height: 20,),
                 TextFormField(
                   controller: _description,
                   decoration: InputDecoration(
@@ -120,7 +121,7 @@ class _AdminPageState extends State<AdminPage> {
                     return null;
                   },
                 ),
-        
+        SizedBox(height: 20,),
         
                 TextFormField(
                   controller: _priceController,
@@ -128,6 +129,7 @@ class _AdminPageState extends State<AdminPage> {
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
                   validator: (value) => value!.isEmpty ? 'Please enter price' : null,
                 ),
+                SizedBox(height: 20,),
                 DropdownButtonFormField<String>(
                   borderRadius: BorderRadius.circular(8),
 

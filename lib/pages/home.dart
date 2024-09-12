@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:plantta/pages/detail_page.dart';
+import 'package:plantta/pages/notification.dart';
+import 'package:plantta/profile/profile.dart';
 
 class Home extends StatefulWidget {
+
+
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -18,44 +22,92 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightGreen.shade100,
       appBar: AppBar(
+
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        elevation: 1,
+        backgroundColor: Colors.lightGreen.shade100,
+        elevation: 0,
+
         title: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: Row(
+
+          child: Column(
             children: [
-              Expanded(
-                child: TextField(
-                  onChanged: (value) {
-                    setState(() {
-                      searchQuery = value.toLowerCase();  // Update the search query
-                    });
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Search plants...",
-                    prefixIcon: Icon(Icons.search, color: Colors.black45),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                  ),
-                ),
+              Row(
+                children: [
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile(email: 'email',)));
+                      },
+                      child: Image.asset('images/profile2.png',height: 50,)),
+                  SizedBox(width: 20,),
+                  Text( 'Hello '+'Vicky Koushal',style: TextStyle(fontSize: 15),),
+                  SizedBox(width: 100,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Card()));
+                    },
+                      child: Icon(Icons.shopping_cart)),
+                  SizedBox(width: 10,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Notificationn()));
+                    },
+                      child: Icon(Icons.notification_important_rounded))
+                ],
               ),
-              IconButton(
-                icon: Icon(Icons.qr_code_scanner),
-                onPressed: () {
-                  // Your code for QR scanning
-                },
-              ),
+           
             ],
           ),
-        ),
-      ),
-      body: StreamBuilder(
+
+          // child:
+          // Column(
+          //   children: [ Row(
+          //     children: [
+          //       Row(
+          //         children: [
+          //          CircleAvatar(
+          //            radius: 50,
+          //            child: Image.asset('images/profile2.png'),
+          //          )
+          //         ],
+          //       ),
+
+               // Expanded(
+               //      child: TextField(
+               //        onChanged: (value) {
+               //          setState(() {
+               //            searchQuery = value.toLowerCase();  // Update the search query
+               //          });
+               //        },
+               //        decoration: InputDecoration(
+               //          hintText: "Search plants...",
+               //          prefixIcon: Icon(Icons.search, color: Colors.black45),
+               //          border: OutlineInputBorder(
+               //            borderSide: BorderSide.none,
+               //            borderRadius: BorderRadius.circular(10),
+               //          ),
+               //          filled: true,
+               //          fillColor: Colors.grey[200],
+               //        ),
+               //      ),
+               //    ),
+
+                // IconButton(
+                //   icon: Icon(Icons.qr_code_scanner),
+                //   onPressed: () {
+                //     // Your code for QR scanning
+                //   },
+                // ),
+      //         ],
+      //       ),
+      // ]
+      //     )
+         ),
+       ),
+
+    body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('plants').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -74,10 +126,31 @@ class _HomeState extends State<Home> {
           }).toList();
 
           return SingleChildScrollView(
+            
+            
             padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextField(
+                  onChanged: (value){
+                    setState(() {
+                      searchQuery = value.toLowerCase();
+
+                    });
+          },
+
+                  decoration: InputDecoration(
+                    hintText: 'Serach Plants..',prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide.none
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+                SizedBox(height: 10,),
                 Text(
                   "Categories",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -127,8 +200,11 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-      ),
+    )
+
     );
+
+
   }
 
   Widget _buildCategoryCard(String categoryName, IconData icon, Color color) {
