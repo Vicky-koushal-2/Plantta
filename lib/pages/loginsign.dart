@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plantta/adminpages/add_gardener.dart';
 import 'package:plantta/adminpages/admin.dart';
+import 'package:plantta/adminpages/admin_pages.dart';
 import 'package:plantta/pages/login.dart';
 import 'package:plantta/pages/signup.dart';
 
@@ -97,7 +99,7 @@ class _LoginsignState extends State<Loginsign> {
               onTap: () {
                 // Navigate to the admin page when the hidden button is tapped
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AdminPage()),
+                  MaterialPageRoute(builder: (context) => AdminPages()),
                 );
               },
               child: Container(

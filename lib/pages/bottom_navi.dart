@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:plantta/pages/gardening.dart';
 import 'package:plantta/profile/profile.dart';
 import 'home.dart';
 
@@ -18,16 +19,17 @@ class _BottomNaviState extends State<BottomNavi> {
   late Widget currentpage;
   late Home home;
   late Profile profile;
-  late Card card;
+  late Gardening gardening;
+
 
   @override
   void initState() {
     // Initialize pages and pass the email to the Profile widget
     home = Home();
-    card = Card();
+    gardening = Gardening();
     profile = Profile(email: widget.email); // Pass the email to Profile
 
-    pages = [home, card, profile];
+    pages = [home, gardening, profile];
     currentpage = home;
     super.initState();
   }
@@ -52,9 +54,10 @@ class _BottomNaviState extends State<BottomNavi> {
             color: Colors.white,
           ),
           Icon(
-            Icons.shopping_cart_outlined,
+            Icons.nature_outlined,
             color: Colors.white,
           ),
+
           Icon(
             Icons.person_outline,
             color: Colors.white,

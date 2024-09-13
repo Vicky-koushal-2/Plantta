@@ -41,7 +41,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen.shade100,
+      backgroundColor: Colors.white,
       
       body: SingleChildScrollView(
         child: Container(

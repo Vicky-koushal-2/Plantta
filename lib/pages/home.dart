@@ -5,8 +5,6 @@ import 'package:plantta/pages/notification.dart';
 import 'package:plantta/profile/profile.dart';
 
 class Home extends StatefulWidget {
-
-
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -14,100 +12,62 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   String searchQuery = '';
   String selectedCategory = '';
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.lightGreen.shade100,
+        backgroundColor: Colors.white,
         elevation: 0,
-
         title: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
-
-          child: Column(
+          child: Row(
             children: [
-              Row(
-                children: [
-                  GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile(email: 'email',)));
-                      },
-                      child: Image.asset('images/profile2.png',height: 50,)),
-                  SizedBox(width: 20,),
-                  Text( 'Hello '+'Vicky Koushal',style: TextStyle(fontSize: 15),),
-                  SizedBox(width: 100,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Card()));
-                    },
-                      child: Icon(Icons.shopping_cart)),
-                  SizedBox(width: 10,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Notificationn()));
-                    },
-                      child: Icon(Icons.notification_important_rounded))
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Profile(
+                            email: 'email',
+                          )));
+                },
+                child: Image.asset(
+                  'images/profile2.png',
+                  height: 50,
+                ),
               ),
-           
+              SizedBox(width: 15),
+              Text(
+                'Hello Vicky Koushal',
+                style: TextStyle(fontSize: 15),
+              ),
+              
+              Spacer(),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Card()));
+                  },
+                  child: Icon(Icons.shopping_cart)),
+              SizedBox(width: 5),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Notificationn()));
+                  },
+                  child: Icon(Icons.notification_important_rounded))
             ],
           ),
-
-          // child:
-          // Column(
-          //   children: [ Row(
-          //     children: [
-          //       Row(
-          //         children: [
-          //          CircleAvatar(
-          //            radius: 50,
-          //            child: Image.asset('images/profile2.png'),
-          //          )
-          //         ],
-          //       ),
-
-               // Expanded(
-               //      child: TextField(
-               //        onChanged: (value) {
-               //          setState(() {
-               //            searchQuery = value.toLowerCase();  // Update the search query
-               //          });
-               //        },
-               //        decoration: InputDecoration(
-               //          hintText: "Search plants...",
-               //          prefixIcon: Icon(Icons.search, color: Colors.black45),
-               //          border: OutlineInputBorder(
-               //            borderSide: BorderSide.none,
-               //            borderRadius: BorderRadius.circular(10),
-               //          ),
-               //          filled: true,
-               //          fillColor: Colors.grey[200],
-               //        ),
-               //      ),
-               //    ),
-
-                // IconButton(
-                //   icon: Icon(Icons.qr_code_scanner),
-                //   onPressed: () {
-                //     // Your code for QR scanning
-                //   },
-                // ),
-      //         ],
-      //       ),
-      // ]
-      //     )
-         ),
-       ),
-
-    body: StreamBuilder(
+        ),
+      ),
+      body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('plants').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -121,36 +81,34 @@ class _HomeState extends State<Home> {
           final plants = snapshot.data!.docs.where((doc) {
             final plantName = doc['name'].toString().toLowerCase();
             final plantcategory = doc['category'].toString().toLowerCase();
-            return plantName.contains(searchQuery)&&
-                (selectedCategory.isEmpty || plantcategory ==selectedCategory);
+            return plantName.contains(searchQuery) &&
+                (selectedCategory.isEmpty ||
+                    plantcategory == selectedCategory);
           }).toList();
 
           return SingleChildScrollView(
-            
-            
             padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
-                  onChanged: (value){
+                  onChanged: (value) {
                     setState(() {
                       searchQuery = value.toLowerCase();
-
                     });
-          },
-
+                  },
                   decoration: InputDecoration(
-                    hintText: 'Serach Plants..',prefixIcon: Icon(Icons.search),
+                    hintText: 'Search Plants...',
+                    prefixIcon: Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none
+                      borderSide: BorderSide.none,
                     ),
-                    fillColor: Colors.white,
+                    fillColor: Colors.grey.shade200,
                     filled: true,
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Text(
                   "Categories",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -200,26 +158,25 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-    )
-
+      ),
     );
-
-
   }
 
   Widget _buildCategoryCard(String categoryName, IconData icon, Color color) {
-
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         setState(() {
-          selectedCategory = categoryName.toLowerCase()== "all"? '':categoryName.toLowerCase();
+          selectedCategory =
+          categoryName.toLowerCase() == "all" ? '' : categoryName.toLowerCase();
         });
       },
-        child: Container(
+      child: Container(
         margin: EdgeInsets.only(right: 10),
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: selectedCategory == categoryName.toLowerCase()? color.withOpacity(0.7): color.withOpacity(0.2),
+          color: selectedCategory == categoryName.toLowerCase()
+              ? color.withOpacity(0.7)
+              : color.withOpacity(0.2),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -233,23 +190,22 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-            ),
-      );
+      ),
+    );
   }
 
   Widget _buildPlantCard(String plantName, String imagePath, String price, String description) {
-
-    return
-      GestureDetector(
-        onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DetailPage(
-            plantName: plantName,
-            imagePath: imagePath,
-            description: description,
-            price: price,
-          )));
-        },
-        child: Container(
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetailPage(
+              plantName: plantName,
+              imagePath: imagePath,
+              description: description,
+              price: price,
+            )));
+      },
+      child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.white,
@@ -264,11 +220,11 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Expanded(
-              child: ClipRect(
+              child: ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 child: Image.network(imagePath, fit: BoxFit.cover),
               ),
             ),
-
             Padding(
               padding: EdgeInsets.all(8),
               child: Column(
@@ -281,18 +237,19 @@ class _HomeState extends State<Home> {
                   Text(
                     price,
                     maxLines: 2,
-                    style: TextStyle(color:Colors.lightGreenAccent),
+                    style: TextStyle(color: Colors.lightGreenAccent),
                   ),
-                  SizedBox(height: 5,),
-                     Text(description,
-                       style: TextStyle(color:  Colors.green, fontWeight: FontWeight.bold),
+                  SizedBox(height: 5),
+                  Text(
+                    description,
+                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
                   )
                 ],
               ),
             ),
           ],
         ),
-            ),
-      );
+      ),
+    );
   }
 }

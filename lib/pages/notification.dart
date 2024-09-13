@@ -10,10 +10,10 @@ class _NotificationnState extends State<Notificationn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Notification'),
-        backgroundColor: Colors.lightGreen.shade100,
+        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Center(

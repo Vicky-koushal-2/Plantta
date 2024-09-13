@@ -55,7 +55,7 @@ class DetailPage extends StatelessWidget {
             Text(description,
               style: TextStyle(
                   fontSize: 20,
-                  color: Colors.green,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold
 
               ),),
