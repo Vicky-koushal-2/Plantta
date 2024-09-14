@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:plantta/profile/change_location.dart';
 import 'package:plantta/profile/edit_profile.dart';
 import 'package:plantta/pages/login.dart';
-import 'package:plantta/pages/password_update.dart';
+import 'package:plantta/profile/password_update.dart';
 import 'package:plantta/profile/my_order.dart';
 import 'package:plantta/profile/privacy_policy.dart';
 import 'package:plantta/profile/term_and_condition.dart';

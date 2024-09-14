@@ -20,6 +20,7 @@
 // }
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:plantta/pages/gardener_detailed.dart';
 
 class Gardening extends StatefulWidget {
   @override
@@ -88,6 +89,7 @@ class _GardeningState extends State<Gardening> {
             ),
           ],
         ),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -121,6 +123,7 @@ class _GardeningState extends State<Gardening> {
                     child: TextButton(
                       onPressed: () {
                         // Action for viewing details
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>GardenerDetailed(description: description,)));
                       },
                       child: Text('View Details'),
                     ),
@@ -134,4 +137,3 @@ class _GardeningState extends State<Gardening> {
     );
   }
 }
-

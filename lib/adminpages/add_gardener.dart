@@ -56,7 +56,7 @@ class _AddGardeningServiceState extends State<AddGardeningService> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Gardening Service'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

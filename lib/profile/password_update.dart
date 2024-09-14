@@ -35,13 +35,13 @@ if(_key.currentState!.validate())
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Password Update"),
       centerTitle: true,
       automaticallyImplyLeading: false,
       elevation: 0,
-        backgroundColor: Colors.lightGreen.shade100,
+        backgroundColor: Colors.white,
       ),
       body: Padding(
           padding: EdgeInsets.all(20),

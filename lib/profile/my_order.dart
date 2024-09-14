@@ -10,9 +10,9 @@ class _MyOrderState extends State<MyOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(title: Text('My Orders'),
-      backgroundColor: Colors.lightGreen.shade100,),
+      backgroundColor: Colors.white,),
       
       body:
       Column(

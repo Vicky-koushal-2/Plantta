@@ -79,6 +79,7 @@ class DetailPage extends StatelessWidget {
 
                 ElevatedButton(onPressed: (){
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Proceed to Buy")));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentPage(totalPrice: description)));
 
                 },style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     child: Text("Buy Now"))
