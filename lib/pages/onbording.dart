@@ -55,6 +55,7 @@ title: onbordingData[index]["title"]!,
     {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Loginsign()),
 
+
     );
     }
       else

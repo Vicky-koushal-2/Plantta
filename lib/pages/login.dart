@@ -90,6 +90,7 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(50),
                     topLeft: Radius.circular(50),
+
                   ),
                 ),
                 padding: EdgeInsets.all(20),

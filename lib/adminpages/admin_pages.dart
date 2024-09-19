@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plantta/adminpages/add_gardener.dart';
 import 'package:plantta/adminpages/admin.dart';
+import 'package:plantta/adminpages/delete_gardner.dart';
+import 'package:plantta/adminpages/delete_plant.dart';
 
 class AdminPages extends StatefulWidget {
   const AdminPages({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class _AdminPagesState extends State<AdminPages> {
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 10,),
           GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>AddGardeningService()));
@@ -56,6 +58,43 @@ class _AdminPagesState extends State<AdminPages> {
               ),
             ),
 
+          ),
+          SizedBox(height: 10,),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminDeleteService()));
+            },
+            child: Card(
+              elevation: 3,
+              child: Container(
+                height: 80,
+                child: ListTile(
+                  leading: Image.asset('images/delete_item.png',height: 100,width: 100,),
+                  title: Text('Delete Gardener'),
+                  subtitle: Text('Delete youre gardener service'),
+                  trailing: Icon(Icons.delete,color: Colors.red,),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10,),
+          GestureDetector(
+            onTap: (){
+
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminDeletePlant()));
+            },
+            child: Card(
+              elevation: 3,
+              child: Container(
+                height: 80,
+                child: ListTile(
+                  leading: Image.asset('images/delete_item.png',height: 100,width: 100,),
+                  title: Text('Delete Plant'),
+                  subtitle: Text('Delete youre plant'),
+                  trailing: Icon(Icons.delete,color: Colors.red,),
+                ),
+              ),
+            ),
           )
         ],
       ),

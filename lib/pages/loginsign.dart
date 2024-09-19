@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plantta/adminpages/add_gardener.dart';
-import 'package:plantta/adminpages/admin.dart';
-import 'package:plantta/adminpages/admin_pages.dart';
+import 'package:plantta/adminpages/admin_login.dart';
 import 'package:plantta/pages/login.dart';
-import 'package:plantta/pages/signup.dart';
 
 class Loginsign extends StatefulWidget {
   const Loginsign({Key? key}) : super(key: key);
@@ -13,100 +10,76 @@ class Loginsign extends StatefulWidget {
 }
 
 class _LoginsignState extends State<Loginsign> {
+  String selectedRole = 'User'; // Default role is 'User'
+
+  // Method to handle navigation based on role selection
+  void navigateToLoginPage() {
+    if (selectedRole == 'Admin') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => AdminLogin()));
+    } else {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/plantback.webp"),
-                fit: BoxFit.cover,
-              ),
+          // Main content
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // App logo
+                Image.asset('images/plantalogo.png'),
+                SizedBox(height: 20),
+
+                // Select Role Text
+                Text(
+                  "Select Role",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+
+                // Role selection dropdown
+                DropdownButton<String>(
+                  value: selectedRole,
+                  items: ['User', 'Admin'].map((String role) {
+                    return DropdownMenuItem<String>(
+                      value: role,
+                      child: Text(role),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedRole = value!;
+                    });
+                  },
+                ),
+                SizedBox(height: 20),
+
+                // Proceed Button
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: navigateToLoginPage,
+                    child: Text('Proceed as $selectedRole'),
+                  ),
+                ),
+              ],
             ),
           ),
-          Container(
-            color: Colors.black.withOpacity(0.3),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  "Grow Your Green Space with Plantta",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 50),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Login()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    minimumSize: Size(double.infinity, 50),
-                  ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Signup()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    minimumSize: Size(double.infinity, 50),
-                    side: BorderSide(color: Colors.black),
-                  ),
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          // Hidden Button for Admin Navigation
-          Positioned(
-            // Adjust the position as needed
-            top: 50,
-            right: 20,
-            child: GestureDetector(
-              onTap: () {
-                // Navigate to the admin page when the hidden button is tapped
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AdminPages()),
-                );
-              },
-              child: Container(
-                width: 50, // Set the size of the hidden button
-                height: 50,
-                color: Colors.transparent, // Make it invisible
-              ),
+
+          // Image at the bottom
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Image.asset(
+              'images/grass.jpeg',
+              height: 100, // Adjust the height as needed
+              width: double.infinity,
+              fit: BoxFit.cover, // Make sure the image covers the bottom
             ),
           ),
         ],
@@ -114,3 +87,4 @@ class _LoginsignState extends State<Loginsign> {
     );
   }
 }
+
